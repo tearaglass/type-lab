@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Typography Research Lab</title>
+    <link rel="stylesheet" href="specimen.css" />
+    <script src="specimen.js" defer></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">LOCAL / RESEARCH INSTRUMENT</p>
+        <h1>Typography Research Lab</h1>
+      </div>
+      <div class="masthead-stats" aria-live="polite">
+        <span><b id="candidate-count">0</b> candidates</span>
+        <span><b id="pinned-count">0</b> pinned</span>
+        <span><b id="visible-count">0</b> visible</span>
+      </div>
+    </header>
+
+    <main class="lab-shell">
+      <aside class="controls" aria-label="Research controls">
+        <section>
+          <label for="project-select">Project preset</label>
+          <select id="project-select"></select>
+        </section>
+
+        <section class="control-grid">
+          <label>Search<input id="search" type="search" placeholder="Name, notes, designer, foundry" /></label>
+          <label>Category<select id="category-filter"><option value="">All categories</option></select></label>
+          <label>Foundry<select id="foundry-filter"><option value="">All foundries</option></select></label>
+          <label>License<select id="license-filter"><option value="">All licenses</option></select></label>
+          <label>Format<select id="format-filter"><option value="">Variable + static</option><option value="variable">Variable</option><option value="static">Static</option></select></label>
+          <label>Type<select id="type-filter"><option value="">All types</option><option>serif</option><option>sans</option><option>mono</option><option>display</option><option>other</option></select></label>
+        </section>
+
+        <section>
+          <label for="custom-text">Custom specimen</label>
+          <textarea id="custom-text" rows="3" placeholder="Type project-specific text"></textarea>
+          <div class="inline-actions">
+            <button id="apply-custom" type="button">Apply to visible</button>
+            <button id="clear-custom" type="button">Reset</button>
+          </div>
+        </section>
+
+        <section class="control-grid compact">
+          <label>Size <output id="size-value">32px</output><input id="size" type="range" min="10" max="120" value="32" /></label>
+          <label>Line height <output id="line-value">1.25</output><input id="line-height" type="range" min="0.8" max="2" value="1.25" step="0.05" /></label>
+          <label>Tracking <output id="tracking-value">0em</output><input id="tracking" type="range" min="-0.08" max="0.3" value="0" step="0.01" /></label>
+          <label>Weight<select id="weight"><option value="100">100</option><option value="200">200</option><option value="300">300</option><option value="400" selected>400</option><option value="500">500</option><option value="600">600</option><option value="700">700</option><option value="800">800</option><option value="900">900</option></select></label>
+        </section>
+
+        <section class="toggle-grid">
+          <label><input id="uppercase" type="checkbox" /> Uppercase</label>
+          <label><input id="lowercase" type="checkbox" /> Lowercase</label>
+          <label><input id="italic" type="checkbox" /> Italic</label>
+          <label><input id="ligatures" type="checkbox" checked /> Ligatures</label>
+          <label><input id="dark-context" type="checkbox" /> Dark context</label>
+          <label><input id="pinned-only" type="checkbox" /> Pinned only</label>
+        </section>
+
+        <section class="color-controls">
+          <label>Foreground<input id="foreground" type="color" value="#1c211d" /></label>
+          <label>Background<input id="background" type="color" value="#e8e5da" /></label>
+        </section>
+
+        <section id="axis-controls" class="axis-controls" hidden>
+          <h2>Variable axes</h2>
+          <div id="axis-list"></div>
+        </section>
+
+        <section class="keyboard-note">
+          <p><kbd>/</kbd> search · <kbd>P</kbd> pinned · <kbd>D</kbd> context</p>
+        </section>
+      </aside>
+
+      <section class="workbench">
+        <nav class="view-tabs" aria-label="Lab view">
+          <button class="active" data-view="specimens">Specimens</button>
+          <button data-view="compare">Pinned comparison</button>
+          <button data-view="components">Mock components</button>
+          <button id="print-view" type="button">Print view</button>
+        </nav>
+
+        <div id="notice" class="notice" role="status"></div>
+        <section id="specimens-view" class="view active" aria-label="Font specimens">
+          <div id="font-grid" class="font-grid"></div>
+        </section>
+        <section id="compare-view" class="view" aria-label="Pinned comparison">
+          <div class="comparison-toolbar"><button id="unpin-all" type="button">Unpin all</button></div>
+          <div id="comparison-grid" class="comparison-grid"></div>
+        </section>
+        <section id="components-view" class="view" aria-label="Mock components">
+          <div class="component-toolbar">
+            <label>Preview family<select id="component-font"></select></label>
+          </div>
+          <div id="component-grid" class="component-grid"></div>
+        </section>
+      </section>
+    </main>
+
+    <template id="font-card-template">
+      <article class="font-card">
+        <header class="font-card-header">
+          <div><p class="font-index"></p><h2 class="font-title"></h2><p class="font-credit"></p></div>
+          <button class="pin-button" type="button" aria-pressed="false">Pin</button>
+        </header>
+        <div class="tag-row"></div>
+        <div class="license-row"></div>
+        <p class="font-description"></p>
+        <div class="size-specimens"></div>
+        <div class="functional-specimens"></div>
+        <footer class="font-meta"></footer>
+      </article>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "id": "default",
+  "projectName": "Generic defaults",
+  "palette": {
+    "foreground": "#1c211d",
+    "background": "#e8e5da",
+    "accent": "#c94d2c",
+    "panel": "#f3f0e6"
+  },
+  "sampleStrings": {
+    "display": "THE ARCHIVE",
+    "heading": "Something changed.",
+    "body": "This is a normal paragraph used to test readability at interface and body-text sizes.",
+    "status": "Unknown signal detected. No action is required.",
+    "data": "USER-00481 · VOICE 047 · BLOCK 31891332",
+    "technical": "0x71F4...91CA · archive_0047_final.wav · 03:18 UTC",
+    "action": "RETURN TO INDEX"
+  },
+  "preferredCategories": [],
+  "mockLabels": {
+    "nav": "INDEX  COLLECTION  NOTES",
+    "button": "RETURN TO INDEX",
+    "offline": "CURRENTLY OFFLINE"
+  },
+  "backgroundColors": ["#e8e5da", "#1c211d"],
+  "defaultFontSizes": [12, 15, 18, 24, 32, 48, 64],
+  "notes": "Unbranded baseline for research passes.",
+  "shortlistedFamilies": []
+}

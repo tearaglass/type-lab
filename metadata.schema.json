@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Typography research metadata",
+  "type": "object",
+  "required": ["schemaVersion", "categories", "fonts"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "lastUpdated": { "type": ["string", "null"], "format": "date" },
+    "researchPass": { "type": "integer", "minimum": 0 },
+    "categories": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "fonts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id", "fontName", "familyName", "designer", "foundry", "sourceSite", "sourceUrl",
+          "categories", "type", "description", "useCases", "availableWeights", "availableStyles",
+          "italicAvailability", "variableFont", "variableAxes", "openTypeFeatures", "availableFormats",
+          "languageSupport", "licenseName", "licenseUrl", "licenseStatus", "commercialUseStatus",
+          "webUseStatus", "permissions", "binaryDownloaded", "localFontPath", "price", "notes",
+          "reasonsInteresting", "researchDate"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "fontName": { "type": "string", "minLength": 1 },
+          "familyName": { "type": "string", "minLength": 1 },
+          "designer": { "type": ["string", "null"] },
+          "foundry": { "type": ["string", "null"] },
+          "sourceSite": { "type": "string", "minLength": 1 },
+          "sourceUrl": { "type": "string", "format": "uri" },
+          "discoveredVia": {
+            "type": "object",
+            "required": ["name", "url"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "url": { "type": "string", "format": "uri" }
+            },
+            "additionalProperties": false
+          },
+          "categories": { "type": "array", "items": { "type": "string" }, "minItems": 1, "uniqueItems": true },
+          "type": { "enum": ["serif", "sans", "mono", "display", "other"] },
+          "description": { "type": "string" },
+          "useCases": { "type": "array", "items": { "type": "string" } },
+          "availableWeights": { "type": "array", "items": { "type": ["string", "number"] } },
+          "availableStyles": { "type": "array", "items": { "type": "string" } },
+          "italicAvailability": { "type": ["boolean", "string", "null"] },
+          "variableFont": { "type": "boolean" },
+          "variableAxes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["tag", "min", "default", "max"],
+              "properties": {
+                "tag": { "type": "string", "minLength": 4, "maxLength": 4 },
+                "name": { "type": "string" },
+                "min": { "type": "number" },
+                "default": { "type": "number" },
+                "max": { "type": "number" },
+                "step": { "type": "number", "exclusiveMinimum": 0 }
+              },
+              "additionalProperties": false
+            }
+          },
+          "openTypeFeatures": { "type": "array", "items": { "type": "string" } },
+          "availableFormats": { "type": "array", "items": { "type": "string" } },
+          "languageSupport": { "type": ["string", "null"] },
+          "licenseName": { "type": ["string", "null"] },
+          "licenseUrl": { "type": ["string", "null"], "format": "uri" },
+          "licenseStatus": { "type": "string" },
+          "commercialUseStatus": { "type": "string" },
+          "webUseStatus": { "type": "string" },
+          "permissions": {
+            "type": "object",
+            "required": ["desktop", "web", "app", "commercial", "redistribution"],
+            "properties": {
+              "desktop": { "type": "string" }, "web": { "type": "string" }, "app": { "type": "string" },
+              "commercial": { "type": "string" }, "redistribution": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+          "binaryDownloaded": { "type": "boolean" },
+          "localFontPath": { "type": ["string", "null"] },
+          "price": { "type": ["string", "number", "null"] },
+          "notes": { "type": "string" },
+          "reasonsInteresting": { "type": "string" },
+          "researchDate": { "type": ["string", "null"], "format": "date" },
+          "cssWeight": { "type": ["string", "number"] },
+          "cssStyle": { "enum": ["normal", "italic", "oblique"] }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

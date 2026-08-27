@@ -1,0 +1,29 @@
+{
+  "id": "example-project",
+  "projectName": "Example project",
+  "palette": {
+    "foreground": "#20251f",
+    "background": "#d9ddd0",
+    "accent": "#9d3927",
+    "panel": "#eef0e7"
+  },
+  "sampleStrings": {
+    "display": "SYSTEM STATUS",
+    "heading": "Unknown signal detected.",
+    "body": "No action is required. This paragraph tests rhythm, texture, and sustained readability.",
+    "status": "Last updated 03:18 UTC.",
+    "data": "USER-00481 · VOICE 047 · BLOCK 31891332",
+    "technical": "0x71F4...91CA · archive_0047_final.wav",
+    "action": "RETURN TO INDEX"
+  },
+  "preferredCategories": ["technical-system", "archival-institutional"],
+  "mockLabels": {
+    "nav": "INDEX  STATUS  RECORDS",
+    "button": "RETURN TO INDEX",
+    "offline": "CURRENTLY OFFLINE"
+  },
+  "backgroundColors": ["#d9ddd0", "#20251f"],
+  "defaultFontSizes": [12, 15, 18, 24, 32, 48, 64],
+  "notes": "Replace this file with project-specific values.",
+  "shortlistedFamilies": []
+}
