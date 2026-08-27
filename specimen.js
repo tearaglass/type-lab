@@ -2,6 +2,7 @@ const state = {
   fonts: [],
   visible: [],
   pinned: new Set(JSON.parse(localStorage.getItem("type-lab:pinned") || "[]")),
+  favorites: new Set(JSON.parse(localStorage.getItem("type-lab:favorites") || "[]")),
   axisValues: {},
   project: null,
   customText: "",
@@ -151,6 +152,7 @@ function applyFilters() {
 function renderAll() {
   renderStats();
   renderFontGrid();
+  renderFavorites();
   renderComparison();
   renderComponentFontOptions();
   renderComponents();
@@ -197,6 +199,11 @@ function createFontCard(font, index) {
   pin.setAttribute("aria-pressed", String(state.pinned.has(font.id)));
   pin.textContent = state.pinned.has(font.id) ? "Pinned" : "Pin";
   pin.addEventListener("click", () => togglePin(font.id));
+  const favorite = $(".favorite-button", card);
+  const isFavorite = state.favorites.has(font.id);
+  favorite.setAttribute("aria-pressed", String(isFavorite));
+  favorite.setAttribute("aria-label", isFavorite ? "Remove from favorites" : "Add to favorites");
+  favorite.addEventListener("click", () => toggleFavorite(font.id));
   const tags = $(".tag-row", card);
   [...font.categories, font.type, ...(font.variableFont ? ["variable"] : [])].filter(Boolean).forEach((tag) => {
     const span = document.createElement("span");
@@ -274,6 +281,25 @@ function unpinAll() {
   state.pinned.clear();
   localStorage.setItem("type-lab:pinned", "[]");
   if (controls.pinnedOnly.checked) applyFilters(); else renderAll();
+}
+
+function toggleFavorite(id) {
+  if (state.favorites.has(id)) state.favorites.delete(id);
+  else state.favorites.add(id);
+  localStorage.setItem("type-lab:favorites", JSON.stringify([...state.favorites]));
+  renderAll();
+}
+
+function renderFavorites() {
+  const grid = $("#favorites-grid");
+  if (!grid) return;
+  grid.replaceChildren();
+  const fonts = state.fonts.filter((font) => state.favorites.has(font.id));
+  if (!fonts.length) {
+    grid.innerHTML = `<div class="empty-state"><div><strong>No favorites.</strong><p>Use the star on a font to save it here.</p></div></div>`;
+    return;
+  }
+  fonts.forEach((font, index) => grid.append(createFontCard(font, index)));
 }
 
 function renderComparison() {
